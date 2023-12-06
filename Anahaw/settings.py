@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'website.apps.WebsiteConfig',
+    'django_mysql',
+    # 'django_schema_auto',
 ]
 
 MIDDLEWARE = [
@@ -81,14 +83,14 @@ WSGI_APPLICATION = 'Anahaw.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'Anahaw',
+        'NAME': 'anahaw',
         'USER': 'root',
         'PASSWORD': '',
-        'HOST': 'localhost',  
-        'PORT': '3306',        
+        'HOST': 'localhost', 
+        'PORT': '3306',
+        'CHARSET': 'utf8' 
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
