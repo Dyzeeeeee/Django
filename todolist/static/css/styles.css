@@ -1,0 +1,134 @@
+.form-check-input {
+    transform: scale(1.5);
+    margin-right: 15px;
+}
+
+
+
+/* .main-content {
+    margin-left: 20px;
+    padding-top: -20px;
+} */
+
+.navbar {
+    background-color: #ffbbbb;
+}
+
+.date-container {}
+
+.greet {}
+
+.sidebar-btn {
+    position: sticky;
+    top: 0;
+    padding-top: 20px;
+    left: 0;
+}
+
+#sidebar-btn {
+    transition: transform 0.7s ease-in-out;
+
+}
+
+.completed {
+    text-decoration: line-through;
+}
+
+.sticky-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    padding: 10px;
+    text-align: center;
+}
+
+
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffbbbb;
+    /* Adjust background color as needed */
+    padding-top: 20px;
+    transition: transform 0.7s ease-in-out;
+}
+
+.sidebar button {
+    background-color: #007bff;
+    /* Adjust button color as needed */
+    color: #fff;
+    /* Adjust button text color as needed */
+    border: none;
+    padding: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.sidebar button:hover {
+    background-color: #0056b3;
+    /* Adjust button hover color as needed */
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li a {
+    color: #343a40;
+    /* Adjust link color as needed */
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+.sidebar ul li a:hover {
+    background-color: #e9ecef;
+    /* Adjust link hover background color as needed */
+}
+
+/* Responsive styles for smaller screens */
+@media (max-width: 992px) {
+    .sidebar {
+        margin-left: -250px;
+    }
+
+    .sidebar.d-md-block {
+        margin-left: 0;
+    }
+}
+
+.sidebar.sidebar-hidden {
+    transform: translateX(-100%);
+}
+
+.add-task {
+    background-color: #0056b3;
+    text-shadow: #343a40;
+}
+
+
+#list1 .form-control {
+    border-color: transparent;
+}
+
+#list1 .form-control:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+#list1 .select-input.form-control[readonly]:not([disabled]) {
+    background-color: #fbfbfb;
+}
+
+.gradient-custom {
+    background: radial-gradient(50% 123.47% at 50% 50%, #00ff94 0%, #720059 100%),
+      linear-gradient(121.28deg, #669600 0%, #ff0000 100%),
+      linear-gradient(360deg, #0029ff 0%, #8fff00 100%),
+      radial-gradient(100% 164.72% at 100% 100%, #6100ff 0%, #00ff57 100%),
+      radial-gradient(100% 148.07% at 0% 0%, #fff500 0%, #51d500 100%);
+    background-blend-mode: screen, color-dodge, overlay, difference, normal;
+  }

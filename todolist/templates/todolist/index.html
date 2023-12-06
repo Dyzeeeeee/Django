@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+{% include "todolist/components/head.html" %}
+
+<body>
+    <div class="">
+        {% include "todolist/components/sidebar.html" %}
+    </div>
+
+    <div id="sidebar-btn" class="container-fluid">
+        <div class="row">
+            <!-- {% include "todolist/components/navbar.html" %} -->
+            <div class="sidebar-btn">
+                <div class="row" style="padding-left: 140px;">
+                    <div class="col-3">
+                        <button id="toggle-sidebar" class=" me-3 btn btn-success">
+                            <i class="bi bi-layout-sidebar"></i>
+                        </button>
+                    </div>
+                    <div class="col-9">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row date-container">
+
+                </div>
+                <div class="col-9 align-self-center">
+                    <div class="row ">
+                        <div class="row justify-content-end ">
+                            <div class="col-5 text-center">
+                                <p>Mon</p>
+                                <h1>26</h1>
+                                <p>November</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% include "todolist/components/main-content.html" %}
+
+        </div>
+    </div>
+
+    {% include "todolist/components/script.html" %}
+
+
+
+
+</body>
+
+</html>

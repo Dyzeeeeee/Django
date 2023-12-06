@@ -1,0 +1,25 @@
+<a class="nav-link active add-task mt-3" href="#" id="addTaskLink">
+    <i class="bi bi-plus-circle-fill"></i>
+    Add Task
+</a>
+
+<div class="card mt-3" id="addTaskCard" style="display: none;">
+    <div class="card-body">
+        <form id="addTaskForm" method="post" action="{% url 'add-todo' %}">
+            {% csrf_token %}
+            <div class="mb-1">
+                <input type="text" class="form-control" name="todoTitle" id="taskNameInput" placeholder="Task name">
+            </div>
+            <div class="mb-3">
+                <textarea class="form-control" name="todoDescription" id="taskDescriptionInput" rows="2"
+                    placeholder="Description"></textarea>
+            </div>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <button class="btn btn-secondary me-md-1" type="button" id="cancelTaskButton">Cancel</button>
+                <button class="btn btn-primary" type="submit" id="addTaskButton">Add task</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
