@@ -1,0 +1,42 @@
+<!-- create_post.html -->
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  /* Add a custom style for the textarea to remove the border */
+  textarea.no-border {
+    border: none;
+    resize: none; /* Disable textarea resizing if needed */
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title mb-4">Create Post</h2>
+          <b>{{ user }}</b>
+          <form method="post" action="{% url 'create_post' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+              <div class="col-9 mb-3">
+                {{ form.content }}
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <div class="col-9 mb-3">
+                {{ form.image }}
+              </div>
+            </div>
+            <div class="row justify-content-center">
+              <button type="submit" class="btn btn-primary btn-block">
+                Post
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,145 @@
+<!-- chat_room.html -->
+{% extends 'base.html' %} {% block content %}
+<style>
+  .profile-picture {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+    object-fit: cover;
+  }
+
+  .chat-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh; /* Set the container height to 100% of the viewport height */
+  }
+
+  .col-4 {
+    /* Add styling for the chatlist column as needed */
+    background-color: #ffffff;
+  }
+
+  .col-6 {
+    /* Adjust styling for the chat messages and form column */
+    background-color: #f0f2f5;
+    display: flex;
+    height: 550px;
+
+    flex-direction: column;
+  }
+
+  .chat-messages {
+    /* Set flex-grow to 1 to make it take up remaining space */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Right-align the messages */
+    overflow-y: auto; /* Add a vertical scrollbar if needed */
+  }
+
+  .message-bubble {
+    padding: 10px;
+    margin: 5px;
+    border-radius: 10px;
+    max-width: 70%;
+  }
+
+  .own-message {
+    background-color: #3498db;
+    color: #fff;
+    align-self: flex-end;
+  }
+
+  .other-message {
+    background-color: #ffffff;
+    color: #000;
+    align-self: flex-start; /* Left-align the other user's messages */
+  }
+
+  .form-container {
+    /* Add styling for the form container */
+    background-color: #f0f2f5;
+    padding: 10px;
+  }
+</style>
+<div class="chat-container" style="background-color: #f0f2f5">
+  <div class="col-4" style="background-color: #f0f2f5">
+    <ul>
+      {% for chat in chat_list %}
+      <li>
+        {% if chat.sender == request.user %} 
+        {{ chat.receiver.username }} 
+       {%else %}
+         {{chat.sender}} 
+         {% endif %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="col-6">
+    <div
+      class="list-group-item d-flex align-items-center pb-3 bg-dark-subtle p-3"
+      style="
+        background-color: #f0f2f5;
+        border-bottom-right-radius: 20%;
+        border-bottom-left-radius: 20%;
+      "
+    >
+      <img
+        src="{{ other_user.userprofile.profile_picture.url }}"
+        alt="Profile Picture"
+        class="profile-picture"
+      />
+      <h2>{{ other_user.username }}</h2>
+    </div>
+
+    <div id="chat-messages" class="chat-messages">
+      {% for message in messages %}
+      <div
+        class="message-bubble {% if message.sender == user %}own-message{% else %}other-message{% endif %}"
+      >
+        {{ message.content }}
+      </div>
+      {% endfor %}
+    </div>
+
+    <div class="form-container">
+      <form
+        method="post"
+        class="row justify-content-between"
+        action="{% url 'chat_room' username=other_user.username %}"
+        id="message-form"
+      >
+        {% csrf_token %}
+        <div class="row col-10 text-center">{{ form.content }}</div>
+        <div class="col-2 text-end">
+          <button type="submit">Send</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="col-2" style="background-color: #f0f2f5"></div>
+</div>
+
+<script>
+  // Add this script to automatically scroll to the bottom of the chat messages
+  var chatMessages = document.getElementById("chat-messages");
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+
+  // Prevent scrolling of the entire page when scrolling within the chat messages
+  document.body.style.overflow = "hidden";
+  chatMessages.addEventListener("scroll", function () {
+    if (
+      chatMessages.scrollTop + chatMessages.clientHeight >=
+      chatMessages.scrollHeight
+    ) {
+      // Enable scrolling if at the bottom of the chat messages
+      document.body.style.overflow = "hidden";
+    } else {
+      // Disable scrolling if not at the bottom
+      document.body.style.overflow = "hidden";
+    }
+  });
+</script>
+{% endblock %}

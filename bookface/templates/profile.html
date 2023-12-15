@@ -1,0 +1,157 @@
+<!-- bookface/templates/profile.html -->
+{% extends 'base.html' %} {% block content %}
+<div
+  style="display: flex; align-items: center; background-color: #f0f2f5"
+  class=""
+>
+  <div class="col-2">eme</div>
+  <div class="col-8 d-flex align-items-center">
+    <!-- Added d-flex and align-items-center -->
+    <div style="position: relative">
+      <div
+        style="
+          width: 100px;
+          height: 100px;
+          overflow: hidden;
+          border-radius: 50%;
+          margin-right: 10px;
+        "
+      >
+        {% if user.userprofile.profile_picture %}
+        <img
+          src="{{ user.userprofile.profile_picture.url }}"
+          alt="Profile Picture"
+          class="img-fluid"
+          style="
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+          "
+        />
+        {% else %}
+        <img
+          src="/profile_pics/default_profile.jpg"
+          alt="Default Profile Picture"
+          class="img-fluid"
+          style="
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+          "
+        />
+        {% endif %}
+      </div>
+      <!-- Add a button to toggle the modal -->
+      <button
+        style="position: absolute; bottom: 5px; right: 15px"
+        class="rounded-5 flat"
+        data-bs-toggle="modal"
+        data-bs-target="#editProfileModal"
+      >
+        <i class="fas fa-edit"></i>
+      </button>
+    </div>
+    <h2>{{ user.username }}</h2>
+  </div>
+  <div class="col-2">eme</div>
+</div>
+
+<!-- Add a modal for the profile picture edit form -->
+<div
+  class="modal fade"
+  id="editProfileModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="editProfileModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editProfileModalLabel">
+          Edit Profile Picture
+        </h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!-- Your profile picture edit form goes here -->
+        <form method="post" enctype="multipart/form-data" class="text-center">
+          {% csrf_token %}
+          <div class="form-group text-center">
+            <label for="id_profile_picture"><b>Profile Picture</b></label>
+            <div class="circle-preview">
+              <input
+                type="file"
+                name="profile_picture"
+                accept="image/*"
+                class="form-control"
+                id="id_profile_picture"
+                style="display: none"
+                onchange="previewImage(this)"
+              />
+              <label for="id_profile_picture" class="choose-image-label"
+                >Choose Image</label
+              >
+              <img id="preview" class="circle-image" />
+            </div>
+          </div>
+          <button class="btn btn-primary" type="submit">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add this to your body section or where you include scripts -->
+<!-- Add this to your body section or where you include scripts -->
+<style>
+  .circle-preview {
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .circle-image {
+    width: 100%;
+    height: 100%;
+    /* object-fit: cover; */
+    border-radius: 50%;
+    border: 2px solid black; /* Add border styles here */
+  }
+
+  .choose-image-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+</style>
+
+<script>
+  function previewImage(input) {
+    var preview = document.getElementById("preview");
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        preview.src = e.target.result;
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+{% endblock %}

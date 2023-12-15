@@ -1,0 +1,7 @@
+<!-- bookface/templates/post_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Post Detail</h2>
+  <p>{{ post.content }} - {{ post.author.username }} ({{ post.created_at }})</p>
+{% endblock %}
